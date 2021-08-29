@@ -10,3 +10,4 @@ resource "local_file" "ansible_inventory_hosts" {
  )
  filename = "inventory"
 }
+Ragesh
