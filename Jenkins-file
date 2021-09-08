@@ -4,21 +4,14 @@ pipeline {
         terraform 'terraform-Rag'
     }
     parameters {
-        //string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
-        //string(name: 'version', defaultValue: '', description: 'Version variable to pass to Terraform')
-        //choice choices: ['AWS', 'AZURE', 'OracleCloud'], description: '''Select the cloud platform
-        //test
-        //''', name: 'Cloud'
         choice choices: ['Production', 'Development'], description: '''Select the AWS account
         ''', name: 'Account'
         choice choices: ['us-west-1', 'ap-south-1', 'eu-central-1'], description: '''Select the region
         ''', name: 'Region'
-        choice choices: ['Windows', 'Linux',], description: '''Select the Operating System
-        ''', name: 'Os'
-        //choice choices: ['Ragesh', 'Moiz', 'Sourabh','Ramesh'], description: '''Server owner
-       // ''', name: 'Owner'
-        //choice choices: ['DEV-GROUP', 'IT-GROUP','UK Support','US Support'], description: '''Server Group
-        //''', name: 'Group'
+        choice choices: ['Ragesh', 'Moiz', 'Sourabh','Ramesh'], description: '''Server owner
+        ''', name: 'Owner'
+        choice choices: ['DEV-GROUP', 'IT-GROUP','UK Support','US Support'], description: '''Server Group
+        ''', name: 'Group'
         string defaultValue: '', description: 'Project', name: 'Project', trim: false
         choice choices: ['t2.micro', 't2.small', 't2.medium'], description: '''Select the appropriate instance type. 
         For more information 
@@ -33,7 +26,7 @@ pipeline {
     stages {
         stage('Git Checkout'){
                 steps{
-                   git credentialsId: 'GITHUB-RAGEH', url: 'https://github.com/Rageshmookoth/terraform-demo.git'
+                   git branch: 'main', credentialsId: 'GITHUB-RAGEH', url: 'https://github.com/Rageshmookoth/aws-workspace1.git'
                 }
             }
      
@@ -52,7 +45,7 @@ pipeline {
                 //}
                 sh 'terraform init -input=false'
                 //sh 'terraform workspace select ${environment}'
-                sh "terraform plan -input=false -out tfplan -var 'region=${params.Region}' -var 'instance_type=${params.Configuration}' -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
+                sh "terraform plan -input=false -out tfplan -var 'region=${params.Region}' -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
@@ -71,7 +64,7 @@ pipeline {
                 //}
                 sh 'terraform init -input=false'
                 //sh 'terraform workspace select ${environment}'
-                sh "terraform plan -input=false -out tfplan -var 'region=${params.Region}' -var 'instance_type=${params.Configuration}' -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
+                sh "terraform plan -input=false -out tfplan -var 'region=${params.Region}'  -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }

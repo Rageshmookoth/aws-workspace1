@@ -1,51 +1,26 @@
-resource "aws_instance" "Ragesh" {
-ami = var.winami[var.region]
-instance_type = var.instance_type
-key_name = "POC-STD-KEY-PAIR"
-tags = {
-  Name = var.instance_name
-  Owner = var.Owner
-  Group = var.Group
-  Project = var.Project
-   }
+
+data "aws_workspaces_bundle" "value_windows_10" {
+  bundle_id = "wsb-bh8rsxt14" # Value with Windows 10 (English)
 }
-#resource "null_resource" "step1"  {
-#provisioner "local-exec" {
-#            command = "echo ${aws_instance.Ragesh.public_ip}"
-#    }
-#}
-resource "null_resource" "wait" {
-depends_on = [
-    aws_instance.Ragesh,
-#     null_resource.step1,
-#    null_resource.wait,
-  ]
-  provisioner "local-exec" {
-     command = "sleep 180"
+
+resource "aws_workspaces_workspace" "example" {
+  directory_id = d-90676d39bf
+  bundle_id    = wsb-8vbljg4r6
+  user_name    = "Ragesh"
+
+  root_volume_encryption_enabled = true
+  user_volume_encryption_enabled = true
+  volume_encryption_key          = "alias/aws/workspaces"
+
+  workspace_properties {
+    compute_type_name                         = "STANDARD"
+    user_volume_size_gib                      = 10
+    root_volume_size_gib                      = 80
+    running_mode                              = "AUTO_STOP"
+    running_mode_auto_stop_timeout_in_minutes = 60
+  }
+
+  tags = {
+    Department = "IT"
   }
 }
-resource "null_resource" "Ansible-play" {
-depends_on = [
-    null_resource.wait,
-  ]
-  # using ansible, declarative approach of configuration management
-  provisioner "local-exec" {
-    command ="ansible-playbook -i inventory  playbook.yml --private-key=${var.private_key}  --user ${var.ansible_user}"
-  }
-}
-resource "null_resource" "Ansible-sethostname" {
-depends_on = [
-    null_resource.Ansible-play,
-  ]
-  # using ansible, declarative approach of configuration management
-  provisioner "local-exec" {
-    command ="ansible-playbook -i inventory  hostname.yml --private-key=${var.private_key}  --user ${var.ansible_user}"
-  }
-}
-
-
-
-
-##Reference url
-### https://a4ank.medium.com/aws-terraform-ansible-end-to-end-automation-9072f2ecf624
-####https://medium.com/on-the-cloud/one-click-environment-creation-with-terraform-ansible-in-under-10-6e8d9284f60
