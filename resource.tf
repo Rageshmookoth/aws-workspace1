@@ -1,5 +1,5 @@
 
-data "aws_workspaces_bundle" "value_windows_10" {
+data "aws_workspaces_bundle" "Standard with Windows 10 (Server 2016 based)" {
   bundle_id = "wsb-bh8rsxt14" # Value with Windows 10 (English)
 }
 
