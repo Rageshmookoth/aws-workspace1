@@ -4,8 +4,8 @@ data "aws_workspaces_bundle" "value_windows_10" {
 }
 
 resource "aws_workspaces_workspace" "example" {
-  directory_id = d-90676d39bf
-  bundle_id    = wsb-8vbljg4r6
+  directory_id = "d-90676d39bf"
+  bundle_id    = "wsb-8vbljg4r6"
   user_name    = "Ragesh"
 
   root_volume_encryption_enabled = true
