@@ -1,6 +1,6 @@
 
 data "aws_workspaces_bundle" "example" {
-  bundle_id = "wsb-bh8rsxt14" # Value with Windows 10 (English)
+  bundle_id = "wsb-8vbljg4r6" # Value with Windows 10 (English)
 }
 
 resource "aws_workspaces_workspace" "example" {
