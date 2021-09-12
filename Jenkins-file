@@ -6,19 +6,15 @@ pipeline {
     parameters {
         choice choices: ['Production', 'Development'], description: '''Select the AWS account
         ''', name: 'Account'
-        choice choices: ['us-west-1', 'ap-south-1', 'eu-central-1'], description: '''Select the region
+        choice choices: ['us-east-1', 'ap-south-1', 'eu-central-1'], description: '''Select the region
         ''', name: 'Region'
         choice choices: ['Ragesh', 'Moiz', 'Sourabh','Ramesh'], description: '''Server owner
         ''', name: 'Owner'
         choice choices: ['DEV-GROUP', 'IT-GROUP','UK Support','US Support'], description: '''Server Group
         ''', name: 'Group'
         string defaultValue: '', description: 'Project', name: 'Project', trim: false
-        choice choices: ['t2.micro', 't2.small', 't2.medium'], description: '''Select the appropriate instance type. 
-        For more information 
-        https://aws.amazon.com/ec2/instance-types/ 
-        ''', name: 'Configuration'
-        string defaultValue: '', description: 'Input server Name', name: 'ServerName', trim: false
-
+        choice choices: ['Ragesh', 'Ashley'], description: '''Select the User who requested for workspace. 
+        ''', name: 'User'
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
         
     }
