@@ -6,7 +6,7 @@ data "aws_workspaces_bundle" "example" {
 resource "aws_workspaces_workspace" "example" {
   directory_id = "d-90676d39bf"
   bundle_id    = "wsb-8vbljg4r6"
-  user_name    = "ashley"
+  user_name    = var.user
 
   root_volume_encryption_enabled = true
   user_volume_encryption_enabled = true
@@ -21,7 +21,9 @@ resource "aws_workspaces_workspace" "example" {
   }
 
   tags = {
-    Department = "IT"
+    Owner = var.Owner
+    Project = var.Project
     Name = "${terraform.workspace}"
+    Group = var.Group
   }
 }

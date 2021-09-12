@@ -70,3 +70,7 @@ description = "Project  name Tag"
 type = string
 default = "No-Project"
 }
+variable "User" {
+description = "User ID"
+type = string
+default = "No User"
