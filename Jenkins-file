@@ -64,7 +64,7 @@ pipeline {
                 //}
                 sh 'terraform init -input=false'
                 //sh 'terraform workspace select ${environment}'
-                sh "terraform plan -input=false -out tfplan -var 'region=${params.Region}'  -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
+                sh "terraform plan -input=false -out tfplan -var 'instance_name=${params.ServerName}' -var 'Group=${params.Group}' -var 'Owner=${params.Owner}' -var 'Project=${params.Project}'"
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
