@@ -1,3 +1,3 @@
 output "Workspacename" {
-  value = "${data.aws_workspaces_bundle.awsworkspace.computer_name}"
+  value = "${data.terraform_remote_state.outputs.computer_name}"
 }
