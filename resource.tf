@@ -1,5 +1,5 @@
 
-data "aws_workspaces_bundle" "example" {
+data "aws_workspaces_bundle" "awsworkspace" {
   bundle_id = "wsb-8vbljg4r6" # Value with Windows 10 (English)
 }
 

@@ -1,3 +1,3 @@
 output "Workspacename" {
-  value = "${computer_name}"
+  value = "${aws_workspaces_bundle.awsworkspace.computer_name}"
 }
