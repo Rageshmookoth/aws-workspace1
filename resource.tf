@@ -22,5 +22,6 @@ resource "aws_workspaces_workspace" "example" {
 
   tags = {
     Department = "IT"
+    Name = "${terraform.workspace}"
   }
 }
