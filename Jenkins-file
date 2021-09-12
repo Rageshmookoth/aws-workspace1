@@ -16,8 +16,7 @@ pipeline {
         ''', name: 'Group'
         string defaultValue: '', description: 'Project', name: 'Project', trim: false
         
-        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
-        
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')    
     }
     
     stages {
