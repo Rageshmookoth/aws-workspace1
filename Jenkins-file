@@ -8,13 +8,14 @@ pipeline {
         ''', name: 'Account'
         choice choices: ['us-east-1', 'ap-south-1', 'eu-central-1'], description: '''Select the region
         ''', name: 'Region'
+        choice choices: ['Ragesh', 'Ashley'], description: '''Select the User who requested for workspace. 
+        ''', name: 'User'
         choice choices: ['Ragesh', 'Moiz', 'Sourabh','Ramesh'], description: '''Server owner
         ''', name: 'Owner'
         choice choices: ['DEV-GROUP', 'IT-GROUP','UK Support','US Support'], description: '''Server Group
         ''', name: 'Group'
         string defaultValue: '', description: 'Project', name: 'Project', trim: false
-        choice choices: ['Ragesh', 'Ashley'], description: '''Select the User who requested for workspace. 
-        ''', name: 'User'
+        
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
         
     }
