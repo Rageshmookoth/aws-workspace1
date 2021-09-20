@@ -18,8 +18,6 @@ resource "aws_workspaces_workspace" "awsworkspace" {
     root_volume_size_gib                      = 80
     running_mode                              = "AUTO_STOP"
     running_mode_auto_stop_timeout_in_minutes = 60
-  }
-  workspace_creation_properties {
     custom_security_group_id            = sg-0001db0255ee99a43
     default_ou                          = "OU=Workstations,OU=Computers,OU=demo,DC=demo,DC=com"
     enable_internet_access              = true
