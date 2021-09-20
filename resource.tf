@@ -1,4 +1,3 @@
-
 data "aws_workspaces_bundle" "awsworkspace" {
   bundle_id = "wsb-8vbljg4r6" # Value with Windows 10 (English)
 }
@@ -18,13 +17,8 @@ resource "aws_workspaces_workspace" "awsworkspace" {
     root_volume_size_gib                      = 80
     running_mode                              = "AUTO_STOP"
     running_mode_auto_stop_timeout_in_minutes = 60
-    custom_security_group_id            = sg-0001db0255ee99a43
-    default_ou                          = "OU=Workstations,OU=Computers,OU=demo,DC=demo,DC=com"
-    enable_internet_access              = true
-    enable_maintenance_mode             = true
-    user_enabled_as_local_administrator = true
   }
-
+  
   tags = {
     Owner = var.Owner
     Project = var.Project
@@ -32,4 +26,3 @@ resource "aws_workspaces_workspace" "awsworkspace" {
     Group = var.Group
   }
 }
-
