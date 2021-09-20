@@ -26,16 +26,3 @@ resource "aws_workspaces_workspace" "awsworkspace" {
     Group = var.Group
   }
 }
-provisioner "local-exec" {
-  command = "env.workspace=${aws_workspaces_workspace.awsworkspace.computer_name}"
-}
-
-resource "null_resource" "Read-name {
-depends_on = [
-    aws_workspaces_workspace.awsworkspace,
-  ]
-  # Get the computer name
-  provisioner "local-exec" {
-    command ="env.workspacename=${aws_workspaces_workspace.awsworkspace.computer_name}"
-  }
-}
