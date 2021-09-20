@@ -18,11 +18,14 @@ resource "aws_workspaces_workspace" "awsworkspace" {
     running_mode                              = "AUTO_STOP"
     running_mode_auto_stop_timeout_in_minutes = 60
   }
-  
+
   tags = {
     Owner = var.Owner
     Project = var.Project
-    Name = "${terraform.workspace}"
+    Name = "${var.User}-Workstation"
     Group = var.Group
   }
+}
+provisioner "local-exec" {
+  command = "env.workspace=${aws_workspaces_workspace.awsworkspace.computer_name}"
 }
