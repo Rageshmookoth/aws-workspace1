@@ -99,7 +99,6 @@ pipeline {
         }
         stage('Remove State file') {
             steps {
-                sh 'export TF_WORKSPACENAME=${aws_workspaces_workspace.awsworkspace.computer_name}'
                 sh 'echo ${TF_WORKSPACENAME}'
                 sh "rm -fr terraform.tfstate"
                 sh "rm -fr .terraform.lock.hcl"
