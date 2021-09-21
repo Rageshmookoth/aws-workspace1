@@ -109,11 +109,11 @@ pipeline {
          
         
     }
-    post {
-    success {
-        mail to: 'rageshmoorkoth@gmail.com',
-             subject: "Workstation build completed",
-             body: "Workstation build completed"
-    }
-}
+    //post {
+    //success {
+    //    mail to: 'rageshmoorkoth@gmail.com',
+    //         subject: "Workstation build completed",
+    //         body: "Workstation build completed"
+    //}
+//}
 }
