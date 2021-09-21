@@ -26,3 +26,32 @@ pipeline {
          }  
      }  
  }
+
+
+
+
+ Jenkins filter 
+
+ script:
+def choices=[]
+textFile= new File("/tmp/users")
+textFile.eachLine{
+choices.add(it)
+}
+return choices
+
+
+Fallback Script
+
+return ["Unable to fetch user from AD"]
+
+script:
+def choices=[]
+textFile= new File("/tmp/groups")
+textFile.eachLine{
+choices.add(it)
+}
+return choices
+
+return ["Unable to fetch Group info from Active directory"]
+
