@@ -3,6 +3,14 @@ pipeline {
     tools {
         terraform 'terraform-Rag'
     } 
+    parameters {
+        choice choices: ['Production', 'Development'], description: '''Select the AWS account
+        ''', name: 'Account'
+        choice choices: ['us-east-1', 'ap-south-1', 'eu-central-1'], description: '''Select the region
+        ''', name: 'Region'
+        string defaultValue: '', description: 'Project', name: 'Project', trim: false
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')      
+    }
     stages {
         stage('Git Checkout'){
                 steps{
