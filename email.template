@@ -1,0 +1,13 @@
+Hi 
+
+Workspace build has been completed. Workspace name is ${aws_workspaces_workspace.awsworkspace.computer_name}
+
+Created by ${builduser}
+
+Following are tag used 
+    Owner = var.Owner
+    Project = var.Project
+    Name = "${var.User}-Workstation"
+    Group = var.Group
+
+Note : This email is send by an automated Jenkins process 
