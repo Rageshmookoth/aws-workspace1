@@ -107,10 +107,12 @@ pipeline {
         }
         stage('Remove State file') {
             steps {
-                sh 'export TF_WORKSPACE=${aws_workspaces_workspace.awsworkspace.computer_name}'
+                sh 'export TF_WORKSPACENAME=${aws_workspaces_workspace.awsworkspace.computer_name}'
+                sh 'echo ${TF_WORKSPACENAME}
                 sh "rm -fr terraform.tfstate"
                 sh "rm -fr .terraform.lock.hcl"
                 sh "rm -fr terraform.tfstate.backup"
+                
             }
         }
          
@@ -119,8 +121,8 @@ pipeline {
     post {
     success {
         mail to: 'rageshmoorkoth@gmail.com',
-             subject: "Server build completed",
-             body: "Server name ${params.ServerName}"
+             subject: "Workstation build completed",
+             body: "Workstation name ${TF_WORKSPACENAME}"
     }
 }
 }
