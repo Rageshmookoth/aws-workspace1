@@ -113,7 +113,7 @@ pipeline {
     success {
         mail to: 'rageshmoorkoth@gmail.com',
              subject: "Workstation build completed",
-             body: "Workstation name ${TF_WORKSPACENAME}"
+             body: "Workstation build completed"
     }
 }
 }
